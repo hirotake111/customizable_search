@@ -1,11 +1,40 @@
 import type { NextPage } from "next";
 import Logo from "../components/Logo";
-import { SearchIcon, MicrophoneIcon } from "@heroicons/react/solid";
+import {
+  SearchIcon,
+  MicrophoneIcon,
+  ViewGridIcon,
+} from "@heroicons/react/solid";
 
 const Home: NextPage = () => {
   return (
     <div className="flex flex-col h-screen justify-between">
-      <header className="w-screen h-16 bg-slate-400">header</header>
+      <header className="w-screen h-16 flex justify-end text-s">
+        <div className="flex items-center mx-4">
+          <div className="mr-4">
+            <a href="#" className="hover:underline">
+              Gmail
+            </a>
+          </div>
+          <div>
+            <a href="#" className="hover:underline">
+              Images
+            </a>
+          </div>
+        </div>
+        <div className="flex items-center mr-4">
+          <div className="mr-4">
+            <a href="#">
+              <ViewGridIcon className="w-5 fill-gray-700" />
+            </a>
+          </div>
+          <a href="#">
+            <button className="px-7 py-2 rounded-md text-white bg-blue-600">
+              Sign in
+            </button>
+          </a>
+        </div>
+      </header>
       <main className="flex flex-col items-center">
         <Logo />
         <form className="flex items-center justify-between h-11 border-solid border border-gray-300 rounded-full max-w-lg w-full px-5 hover:shadow-md transition m-5 focus-within:shadow-md">
