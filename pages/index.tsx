@@ -5,6 +5,7 @@ import {
   MicrophoneIcon,
   ViewGridIcon,
 } from "@heroicons/react/solid";
+import Footer from "../components/Footer";
 
 const Home: NextPage = () => {
   return (
@@ -49,7 +50,9 @@ const Home: NextPage = () => {
         </form>
         <div className="">preferred language</div>
       </main>
-      <footer className="h-20">footer</footer>
+      <footer className="flex flex-col text-sm text-gray-500 bg-gray-100">
+        <Footer />
+      </footer>
     </div>
   );
 };

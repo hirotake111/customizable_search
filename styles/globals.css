@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .custom-a {
+    @apply hover:underline;
+    @apply px-3;
+  }
+}
