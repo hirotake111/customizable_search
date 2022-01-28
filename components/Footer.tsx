@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ReactNode } from "react";
 
 interface ATag {
@@ -5,16 +6,16 @@ interface ATag {
   href: string;
 }
 const LeftATags: ATag[] = [
-  { text: "About", href: "#" },
-  { text: "Advertising", href: "#" },
-  { text: "Business", href: "#" },
-  { text: "How Search works", href: "#" },
+  { text: "About", href: "/" },
+  { text: "Advertising", href: "/" },
+  { text: "Business", href: "/" },
+  { text: "How Search works", href: "/" },
 ];
 
 const RightATags: ATag[] = [
-  { text: "Privacy", href: "#" },
-  { text: "Terms", href: "#" },
-  { text: "Settings", href: "#" },
+  { text: "Privacy", href: "/" },
+  { text: "Terms", href: "/" },
+  { text: "Settings", href: "/" },
 ];
 
 export default function Footer() {
@@ -44,7 +45,9 @@ export default function Footer() {
 }
 
 const A = ({ children, href }: { href: string; children: ReactNode }) => (
-  <a href={href} className="custom-a">
-    {children}
-  </a>
+  <Link href={href}>
+    <a>
+      <div className="custom-a">{children}</div>
+    </a>
+  </Link>
 );

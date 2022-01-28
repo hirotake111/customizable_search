@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ViewGridIcon } from "@heroicons/react/solid";
 
 export default function Header() {
@@ -17,15 +18,19 @@ export default function Header() {
       </div>
       <div className="flex items-center mr-4">
         <div className="mr-4">
-          <a href="#">
-            <ViewGridIcon className="w-5 fill-gray-700" />
-          </a>
+          <Link href="/">
+            <a>
+              <ViewGridIcon className="w-5 fill-gray-700" />
+            </a>
+          </Link>
         </div>
-        <a href="#">
-          <button className="px-7 py-2 rounded-md text-white bg-blue-600">
-            Sign in
-          </button>
-        </a>
+        <Link href="/">
+          <a>
+            <button className="px-7 py-2 rounded-md text-white bg-blue-600">
+              Sign in
+            </button>
+          </a>
+        </Link>
       </div>
     </>
   );
