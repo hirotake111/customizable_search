@@ -14,8 +14,10 @@ const Home: NextPage = () => {
       <header className="w-screen h-16 flex justify-end text-s">
         <Header />
       </header>
-      <main className="flex flex-col items-center">
-        <Logo />
+      <main className="flex flex-col items-center h-full">
+        <div className="flex flex-col justify-end h-full max-h-64">
+          <Logo />
+        </div>
         <div className="m-5 w-full max-w-[90%] sm:max-w-[584px]">
           <form className="flex items-center justify-between h-11 border-solid border border-gray-300 rounded-full  px-5 hover:shadow-md transition focus-within:shadow-md">
             <SearchIcon className="fill-gray-500 w-5 hover:cursor-pointer" />
