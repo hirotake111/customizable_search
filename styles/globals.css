@@ -4,7 +4,10 @@
 
 @layer components {
   .custom-a {
+    @apply flex;
     @apply hover:underline;
     @apply px-3;
+    @apply h-12;
+    @apply items-center;
   }
 }
