@@ -27,6 +27,12 @@ const Home: NextPage = () => {
               <MicrophoneIcon className="fill-gray-500 w-5 hover:cursor-pointer" />
             </div>
           </form>
+          <div className="mt-7">
+            <div className="flex justify-center">
+              <button className="custom-btn mr-5">Google Search</button>
+              <button className="custom-btn">I'm Feeling Lucky</button>
+            </div>
+          </div>
         </div>
         <div className="">preferred language</div>
       </main>
