@@ -21,17 +21,15 @@ body {
     @apply text-sm;
     @apply px-3;
     @apply h-10;
-    @apply rounded-md;
     @apply hover:shadow-sm;
-    @apply border;
-    @apply border-gray-100;
+    @apply border border-gray-100;
+    @apply rounded-md;
     @apply hover:border-gray-300;
   }
 
   .custom-search-tab {
-    @apply py-3 px-5;
-    @apply text-gray-500;
-    @apply text-sm;
+    @apply py-2 px-3 md:py-3 md:px-5;
+    @apply text-gray-500 text-sm;
   }
 
   .custom-search-tab_active {

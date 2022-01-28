@@ -30,6 +30,7 @@ const Search: NextPage = () => {
   useEffect(() => {
     if (input.current && typeof query.q === "string") {
       input.current.value = query.q;
+      return;
     }
   }, [input, query]);
 
@@ -70,7 +71,10 @@ const Search: NextPage = () => {
         </div>
       </header>
       <main className="flex flex-col">
-        <div aria-label="tabs" className="mt-3 ml-36">
+        <div
+          aria-label="search tabs"
+          className="mt-3 sm:ml-36 overflow-x-scroll"
+        >
           <ul className="flex">
             <li className="custom-search-tab custom-search-tab_active">
               <div className="flex">
@@ -102,14 +106,17 @@ const Search: NextPage = () => {
                 <span>Books</span>
               </div>
             </li>
-            <li className="custom-search-tab">: More</li>
+            <li className="custom-search-tab whitespace-nowrap">: More</li>
           </ul>
         </div>
         <div
           aria-label="border line"
           className="border-b border-gray-300 mb-2"
         ></div>
-        <div aria-label="search results" className="min-h-[calc(80vh)] ml-36">
+        <div
+          aria-label="search results"
+          className="min-h-[calc(80vh)] sm:ml-36"
+        >
           {isLoading ? (
             <span>Loading...</span>
           ) : error ? (
