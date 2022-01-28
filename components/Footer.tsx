@@ -45,7 +45,7 @@ export default function Footer() {
 }
 
 const A = ({ children, href }: { href: string; children: ReactNode }) => (
-  <Link href={href}>
+  <Link href={href} passHref>
     <a>
       <div className="custom-a">{children}</div>
     </a>

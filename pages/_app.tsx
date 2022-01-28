@@ -1,8 +1,10 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const client = new QueryClient();
   return (
     <>
       <Head>
@@ -10,8 +12,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="description" content="Google clone app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <Component {...pageProps} />
+      <QueryClientProvider client={client}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </>
   );
 }

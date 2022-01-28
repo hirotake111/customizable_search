@@ -13,17 +13,25 @@ import { useRouter } from "next/router";
 import Logo from "../components/Logo";
 import SearchForm from "../components/searchForm";
 import Footer from "../components/Footer";
+import { getSearchResults } from "../utils/api";
+import { useQuery } from "react-query";
 
 const Search: NextPage = () => {
   const router = useRouter();
   const input = useRef<HTMLInputElement>(null);
-  const { q } = router.query;
+  const { query } = router;
+  const { data, isLoading, error } = useQuery(["search", query], () => {
+    console.log("useQuery:", typeof query.q === "string" && query.q.length > 0);
+    if (typeof query.q === "string" && query.q.length > 0) {
+      return getSearchResults(query.q);
+    }
+  });
 
   useEffect(() => {
-    if (input.current && typeof q === "string") {
-      input.current.value = q;
+    if (input.current && typeof query.q === "string") {
+      input.current.value = query.q;
     }
-  }, [input]);
+  }, [input, query]);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {};
   return (
@@ -51,7 +59,7 @@ const Search: NextPage = () => {
                 </a>
               </Link>
             </div>
-            <Link href="/">
+            <Link href="/" passHref>
               <a>
                 <button className="px-5 py-2 w-24 rounded-md text-white text-sm bg-blue-600">
                   Sign in
@@ -102,7 +110,13 @@ const Search: NextPage = () => {
           className="border-b border-gray-300 mb-2"
         ></div>
         <div aria-label="search results" className="min-h-[calc(80vh)] ml-36">
-          results
+          {isLoading ? (
+            <span>Loading...</span>
+          ) : error ? (
+            <span>error: {error}</span>
+          ) : (
+            <span>{JSON.stringify(data)}</span>
+          )}
         </div>
       </main>
       <Footer />

@@ -46,8 +46,10 @@ const Home: NextPage = () => {
         </div>
         <div className="text-xs text-gray-600">
           Google offered in:{" "}
-          <Link href="/">
-            <span className="text-blue-700 hover:underline">日本語</span>
+          <Link href="/" passHref>
+            <a>
+              <span className="text-blue-700 hover:underline">日本語</span>
+            </a>
           </Link>
         </div>
       </main>
