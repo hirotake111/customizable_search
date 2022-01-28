@@ -27,4 +27,14 @@ body {
     @apply border-gray-100;
     @apply hover:border-gray-300;
   }
+
+  .custom-search-tab {
+    @apply py-3 px-5;
+    @apply text-gray-500;
+    @apply text-sm;
+  }
+
+  .custom-search-tab_active {
+    @apply text-blue-500;
+  }
 }

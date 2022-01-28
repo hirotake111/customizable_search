@@ -1,5 +1,12 @@
 import { FormEventHandler, useEffect, useRef } from "react";
-import { ViewGridIcon } from "@heroicons/react/solid";
+import {
+  BookOpenIcon,
+  NewspaperIcon,
+  PhotographIcon,
+  PlayIcon,
+  SearchIcon,
+  ViewGridIcon,
+} from "@heroicons/react/solid";
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -21,13 +28,13 @@ const Search: NextPage = () => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {};
   return (
     <div className="flex flex-col">
-      <header className="flex justify-between flex-col sm:flex-row items-center pt-9 px-5 pb-2">
+      <header className="flex justify-between flex-col sm:flex-row items-center pt-7 px-6 pb-2">
         <div
           aria-label="left"
           className="flex flex-col items-center sm:flex-row w-full"
         >
           <Link href="/">
-            <a className="flex items-center sm:mr-5 mb-3 sm:mb-0">
+            <a className="flex items-center sm:mr-10 mb-3 sm:mb-0">
               <Logo width={92} height={30} />
             </a>
           </Link>
@@ -55,15 +62,48 @@ const Search: NextPage = () => {
         </div>
       </header>
       <main className="flex flex-col">
-        <ul className="flex ml-36">
-          <li>All</li>
-          <li>Videos</li>
-          <li>Images</li>
-          <li>News</li>
-          <li>Books</li>
-          <li>: More</li>
-        </ul>
-        <div className="min-h-[calc(80vh)] ml-36">results</div>
+        <div aria-label="tabs" className="mt-3 ml-36">
+          <ul className="flex">
+            <li className="custom-search-tab custom-search-tab_active">
+              <div className="flex">
+                <SearchIcon width={16} className="mr-2" />
+                <span>All</span>
+              </div>
+            </li>
+            <li className="custom-search-tab">
+              <div className="flex">
+                <PlayIcon width={16} className="mr-2" />
+                <span>Videos</span>
+              </div>
+            </li>
+            <li className="custom-search-tab">
+              <div className="flex">
+                <PhotographIcon width={16} className="mr-2" />
+                <span>Images</span>
+              </div>
+            </li>
+            <li className="custom-search-tab">
+              <div className="flex">
+                <NewspaperIcon width={16} className="mr-2" />
+                <span>News</span>
+              </div>
+            </li>
+            <li className="custom-search-tab">
+              <div className="flex">
+                <BookOpenIcon width={16} className="mr-2" />
+                <span>Books</span>
+              </div>
+            </li>
+            <li className="custom-search-tab">: More</li>
+          </ul>
+        </div>
+        <div
+          aria-label="border line"
+          className="border-b border-gray-300 mb-2"
+        ></div>
+        <div aria-label="search results" className="min-h-[calc(80vh)] ml-36">
+          results
+        </div>
       </main>
       <Footer />
     </div>
