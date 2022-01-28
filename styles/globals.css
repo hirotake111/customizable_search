@@ -8,23 +8,17 @@ body {
 
 @layer components {
   .custom-a {
-    @apply flex;
+    @apply flex items-center;
+    @apply px-3 h-12;
     @apply hover:underline;
-    @apply px-3;
-    @apply h-12;
-    @apply items-center;
   }
 
   .custom-btn {
     @apply bg-gray-100;
-    @apply text-gray-600;
-    @apply text-sm;
-    @apply px-3;
-    @apply h-10;
-    @apply hover:shadow-sm;
-    @apply border border-gray-100;
-    @apply rounded-md;
-    @apply hover:border-gray-300;
+    @apply text-gray-600 text-sm;
+    @apply px-3 h-10;
+    @apply border border-gray-100 rounded-md;
+    @apply hover:shadow-sm hover:border-gray-300;
   }
 
   .custom-search-tab {
