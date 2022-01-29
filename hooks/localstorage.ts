@@ -10,7 +10,8 @@ export const useLocalStorage = <T>(key: string, initialValue: T) => {
       return;
     }
     // value is stored in local storage -> update value
-    console.log(`will update value for ${key}: ${stored.value}`);
+    // console.log("current value:", value);
+    // console.log(`will update value for ${key}:`, stored.value);
     setValue(stored.value);
   }, []);
 
