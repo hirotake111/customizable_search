@@ -21,7 +21,6 @@ const Search: NextPage = () => {
   const input = useRef<HTMLInputElement>(null);
   const { query } = router;
   const { data, isLoading, error } = useQuery(["search", query], () => {
-    console.log("useQuery:", typeof query.q === "string" && query.q.length > 0);
     if (typeof query.q === "string" && query.q.length > 0) {
       return getSearchResults(query.q);
     }
@@ -34,7 +33,14 @@ const Search: NextPage = () => {
     }
   }, [input, query]);
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {};
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    console.log("submit");
+    if (input.current?.value && input.current.value.length >= 1) {
+      router.push(`search?q=${input.current.value}`);
+      return;
+    }
+  };
   return (
     <div className="flex flex-col">
       <header className="flex justify-between flex-col sm:flex-row items-center pt-7 px-6 pb-2">

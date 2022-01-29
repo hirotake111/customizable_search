@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import axios from "axios";
 
 import { config } from "../../config";
-import { encode } from "punycode";
 import { getMockData } from "../../utils/mockData";
 
 const baseUrl = "https://www.googleapis.com/customsearch/v1";
@@ -12,24 +11,27 @@ export default async function searchHandler(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> {
-  return new Promise(async (resolve) => {
-    const { key, cx } = config;
-    const { q } = req.query;
-    if (!(q && typeof q === "string" && key.length > 10 && cx.length > 10))
-      return resolve(res.status(400).send({ result: "bad request" }));
-    const url = `${baseUrl}?key=${key}&cx=${cx}&q=${encodeURI(q)}`;
-    // const url = "https://www.google.com";
-    try {
-      // const { data, status } = await axios.get(url);
-      const data = await getMockData(url);
-      resolve(res.status(200).send({ result: data }));
-    } catch (e) {
-      resolve(res.status(400).send({ result: e }));
+  const { key, cx } = config;
+  const { q } = req.query;
+
+  try {
+    if (config.key.length < 10) {
+      // use mock data
+      const data = await getMockData("");
+      return res.status(200).send({ result: "success", data });
     }
-    // https://content-customsearch.googleapis.com/customsearch/v1?q=react%20js
-    // https://customsearch.googleapis.com/customsearch/v1&cx=f071bf7789cd54c9f&q=react%20js
-    // setTimeout(() => {
-    //   resolve(res.status(200).send({ result: q }));
-    // }, 2000);
-  });
+  } catch (e) {
+    res.status(400).send({ result: e });
+  }
+
+  if (!(q && typeof q === "string" && key.length > 10 && cx.length > 10))
+    return res.status(400).send({ result: "bad request" });
+  const url = `${baseUrl}?key=${key}&cx=${cx}&q=${encodeURI(q)}`;
+  try {
+    // fetch data from Google custom search API
+    const { data, status } = await axios.get(url);
+    res.status(200).send({ result: "success", data });
+  } catch (e) {
+    res.status(400).send({ result: e });
+  }
 }
