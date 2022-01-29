@@ -16,7 +16,8 @@ import Logo from "../components/Logo";
 import SearchForm from "../components/searchForm";
 import Footer from "../components/Footer";
 import { getSearchResults } from "../utils/api";
-import SearchInfo from "../components/SearchInformation";
+import SearchInfo from "../components/SearchInfo";
+import SearchedItem from "../components/SearchedItem";
 
 const Search: NextPage = () => {
   const router = useRouter();
@@ -131,11 +132,13 @@ const Search: NextPage = () => {
             <span>error: {error}</span>
           ) : data ? (
             <div className="flex flex-col">
-              <div aria-label="search information">
+              <div aria-label="search information" className="mb-4">
                 <SearchInfo {...data?.searchInformation} />
               </div>
-              <div aria-label="search results">
-                {JSON.stringify(data.items)}
+              <div aria-label="search results" className="flex flex-col">
+                {data.items.map((item) => (
+                  <SearchedItem {...item} />
+                ))}
               </div>
             </div>
           ) : (

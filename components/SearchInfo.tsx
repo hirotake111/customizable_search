@@ -1,9 +1,7 @@
 import { SearchInformation } from "../utils/types";
 
 export default function SearchInfor({
-  totalResults,
   formattedTotalResults,
-  searchTime,
   formattedSearchTime,
 }: SearchInformation) {
   return (
