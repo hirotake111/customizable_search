@@ -9,12 +9,14 @@ import {
 } from "@heroicons/react/solid";
 import type { NextPage } from "next";
 import Link from "next/link";
+import { useQuery } from "react-query";
 import { useRouter } from "next/router";
+
 import Logo from "../components/Logo";
 import SearchForm from "../components/searchForm";
 import Footer from "../components/Footer";
 import { getSearchResults } from "../utils/api";
-import { useQuery } from "react-query";
+import SearchInfo from "../components/SearchInformation";
 
 const Search: NextPage = () => {
   const router = useRouter();
@@ -79,7 +81,7 @@ const Search: NextPage = () => {
       <main className="flex flex-col">
         <div
           aria-label="search tabs"
-          className="mt-3 sm:ml-36 overflow-x-scroll"
+          className="mt-3 ml-8 lg:ml-36 overflow-x-auto"
         >
           <ul className="flex">
             <li className="custom-search-tab custom-search-tab_active">
@@ -121,14 +123,23 @@ const Search: NextPage = () => {
         ></div>
         <div
           aria-label="search results"
-          className="min-h-[calc(80vh)] sm:ml-36"
+          className="min-h-[calc(80vh)] ml-8 lg:ml-36"
         >
           {isLoading ? (
             <span>Loading...</span>
           ) : error ? (
             <span>error: {error}</span>
+          ) : data ? (
+            <div className="flex flex-col">
+              <div aria-label="search information">
+                <SearchInfo {...data?.searchInformation} />
+              </div>
+              <div aria-label="search results">
+                {JSON.stringify(data.items)}
+              </div>
+            </div>
           ) : (
-            <span>{JSON.stringify(data)}</span>
+            <span>no data</span>
           )}
         </div>
       </main>
