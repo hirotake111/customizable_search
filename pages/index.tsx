@@ -3,14 +3,17 @@ import Link from "next/link";
 import { FormEventHandler, useCallback, useRef } from "react";
 import Logo from "../components/Logo";
 import { useRouter } from "next/router";
+import { CogIcon } from "@heroicons/react/outline";
 
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import SearchForm from "../components/searchForm";
+import { useModal } from "../hooks/modal";
 
 const Home: NextPage = () => {
   const router = useRouter();
   const input = useRef<HTMLInputElement>(null);
+  const { modalEnabled, enableModal } = useModal();
 
   const pushSearchString = useCallback(() => {
     if (input.current?.value && input.current.value.length >= 1) {
@@ -26,8 +29,28 @@ const Home: NextPage = () => {
 
   return (
     <div className="flex flex-col h-screen justify-between">
-      <header className="w-screen h-16 flex justify-end text-s">
-        <Header />
+      {/** modal */}
+      <div
+        className="absolute z-10 transition-all"
+        style={{ visibility: modalEnabled ? "visible" : "hidden" }}
+      >
+        <div className="flex justify-center items-center w-screen h-screen bg-slate-400 bg-opacity-50">
+          <div
+            aria-label="modal"
+            className="flex flex-col w-3/4 h-3/4 rounded-xl bg-white p-5"
+          >
+            <span className="text-lg">Settings</span>
+            <span>Still in development (sorry!)</span>
+            <input type="checkbox" className="default:ring-2 ..." />
+          </div>
+        </div>
+      </div>
+      <header className="w-screen h-16 flex justify-end text-s pr-5">
+        {/* <Header /> */}
+        <CogIcon
+          className="w-8 fill-emerald-300 text-blue-400 cursor-pointer"
+          onClick={enableModal}
+        />
       </header>
       <main className="flex flex-col items-center h-full">
         <div className="flex flex-col justify-end h-full max-h-64">

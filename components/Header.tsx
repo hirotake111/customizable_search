@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ViewGridIcon } from "@heroicons/react/solid";
+import { CogIcon } from "@heroicons/react/outline";
 
 export default function Header() {
   return (
@@ -24,13 +25,7 @@ export default function Header() {
             </a>
           </Link>
         </div>
-        <Link href="/">
-          <a>
-            <button className="px-7 py-2 rounded-md text-white bg-blue-600">
-              Sign in
-            </button>
-          </a>
-        </Link>
+        <CogIcon className="w-8 fill-emerald-300 text-blue-400 cursor-pointer" />
       </div>
     </>
   );

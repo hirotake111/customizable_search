@@ -7,6 +7,8 @@ import {
   SearchIcon,
   ViewGridIcon,
 } from "@heroicons/react/solid";
+import { CogIcon } from "@heroicons/react/outline";
+
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useQuery } from "react-query";
@@ -63,20 +65,21 @@ const Search: NextPage = () => {
         </div>
         <div aria-label="right" className="hidden sm:block">
           <div className="flex items-center mr-4">
-            <div className="mx-4">
+            <CogIcon className="w-8 fill-emerald-300 text-blue-400 cursor-pointer" />
+            {/* <div className="mx-4">
               <Link href="/">
                 <a>
                   <ViewGridIcon className="w-5 fill-gray-700" />
                 </a>
               </Link>
-            </div>
-            <Link href="/" passHref>
+            </div> */}
+            {/* <Link href="/" passHref>
               <a>
                 <button className="px-5 py-2 w-24 rounded-md text-white text-sm bg-blue-600">
                   Sign in
                 </button>
               </a>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </header>
