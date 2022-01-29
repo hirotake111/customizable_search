@@ -14,24 +14,26 @@ export default async function searchHandler(
   const { key, cx } = config;
   const { q } = req.query;
 
+  if (!(q && typeof q === "string" && cx.length > 10)) {
+    res.status(400).send({ result: "bad request" });
+    return;
+  }
   try {
+    const url = `${baseUrl}?key=${key}&cx=${cx}&q=${encodeURI(q)}`;
     if (config.key.length < 10) {
       // use mock data
-      const data = await getMockData("");
-      return res.status(200).send({ result: "success", data });
+      const data = await getMockData(url);
+      res.status(200).send({ result: "success", data });
+      return;
     }
-  } catch (e) {
-    res.status(400).send({ result: e });
-  }
-
-  if (!(q && typeof q === "string" && key.length > 10 && cx.length > 10))
-    return res.status(400).send({ result: "bad request" });
-  const url = `${baseUrl}?key=${key}&cx=${cx}&q=${encodeURI(q)}`;
-  try {
     // fetch data from Google custom search API
     const { data, status } = await axios.get(url);
     res.status(200).send({ result: "success", data });
   } catch (e) {
-    res.status(400).send({ result: e });
+    res
+      .status(500)
+      .send({
+        result: "Error white getting data from Google custom search API",
+      });
   }
 }
