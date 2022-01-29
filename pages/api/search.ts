@@ -30,10 +30,14 @@ export default async function searchHandler(
     const { data, status } = await axios.get(url);
     res.status(200).send({ result: "success", data });
   } catch (e) {
-    res
-      .status(500)
-      .send({
-        result: "Error white getting data from Google custom search API",
+    if (e instanceof Error) {
+      res.status(500).send({
+        result: e.message,
       });
+      return;
+    }
+    res.status(500).send({
+      result: "Error white getting data from Google custom search API",
+    });
   }
 }
