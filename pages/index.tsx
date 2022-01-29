@@ -8,14 +8,14 @@ import { CogIcon } from "@heroicons/react/outline";
 import Footer from "../components/Footer";
 import SearchForm from "../components/SearchForm";
 import { useModal } from "../hooks/modal";
-import { useDarkMode } from "../hooks/darkmode";
 import SettingModal from "../components/SettingModal";
+import { useSettings } from "../hooks/settings";
 
 const Home: NextPage = () => {
   const router = useRouter();
   const input = useRef<HTMLInputElement>(null);
   const { modalEnabled, enableModal, modalRef } = useModal();
-  const { darkMode, setDarkMode } = useDarkMode();
+  const { settings, updateSettings } = useSettings();
 
   const pushSearchString = useCallback(() => {
     if (input.current?.value && input.current.value.length >= 1) {
@@ -31,14 +31,16 @@ const Home: NextPage = () => {
   return (
     <div
       aria-label="background color"
-      className={["transition", darkMode ? "bg-slate-800" : ""].join(" ")}
+      className={["transition", settings.darkMode ? "bg-slate-800" : ""].join(
+        " "
+      )}
     >
       <div className="flex flex-col h-screen justify-between">
         <SettingModal
           modalEnabled={modalEnabled}
           refProp={modalRef}
-          darkMode={darkMode}
-          onClick={() => setDarkMode(!darkMode)}
+          settings={settings}
+          onUpdateSettings={updateSettings}
         />
         <header className="w-screen h-16 flex justify-end text-s pr-5">
           {/* <Header /> */}
@@ -55,18 +57,22 @@ const Home: NextPage = () => {
             <SearchForm
               inputRef={input}
               onSubmit={handleSubmit}
-              darkMode={darkMode}
+              darkMode={settings.darkMode}
             />
             <div className="mt-7">
               <div className="flex justify-center">
                 <button
-                  className={`custom-btn mr-5 ${darkMode && "custom-btn_dark"}`}
+                  className={`custom-btn mr-5 ${
+                    settings.darkMode && "custom-btn_dark"
+                  }`}
                   onClick={pushSearchString}
                 >
                   GoGoLetsSearch
                 </button>
                 <button
-                  className={`custom-btn ${darkMode && "custom-btn_dark"}`}
+                  className={`custom-btn ${
+                    settings.darkMode && "custom-btn_dark"
+                  }`}
                 >
                   I&apos;m Feeling Lucky
                 </button>
@@ -82,7 +88,7 @@ const Home: NextPage = () => {
             </Link>
           </div>
         </main>
-        <Footer darkMode={darkMode} />
+        <Footer darkMode={settings.darkMode} />
       </div>{" "}
     </div>
   );

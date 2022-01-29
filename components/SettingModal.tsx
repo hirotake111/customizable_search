@@ -1,16 +1,17 @@
 import { MouseEventHandler, RefObject } from "react";
+import { Settings } from "../hooks/settings";
 
 interface Props {
   modalEnabled: boolean;
-  darkMode: boolean;
+  settings: Settings;
   refProp: RefObject<HTMLDivElement>;
-  onClick: MouseEventHandler;
+  onUpdateSettings: (settings: Settings) => void;
 }
 export default function SettingModal({
   modalEnabled,
-  darkMode,
+  settings,
   refProp,
-  onClick,
+  onUpdateSettings,
 }: Props) {
   return (
     <div
@@ -26,17 +27,39 @@ export default function SettingModal({
           aria-label="modal"
           className="flex flex-col w-3/4 h-3/4 rounded-xl bg-white p-5"
         >
-          <span className="text-lg">Settings</span>
-          <span>Still in development (sorry!)</span>
-          <div className="flex items-center h-16">
-            <div className="flex items-center cursor-pointer" onClick={onClick}>
+          <span className="text-lg mb-3">Settings</span>
+          <div className="flex items-center h-10">
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={() =>
+                onUpdateSettings({ ...settings, darkMode: !settings.darkMode })
+              }
+            >
               <label htmlFor="dark mode" className="mr-4 cursor-pointer">
                 Enable dark mode
               </label>
               <input
                 type="checkbox"
                 className="cursor-pointer"
-                checked={darkMode}
+                checked={settings.darkMode}
+                onChange={() => {}}
+              />
+            </div>
+          </div>
+          <div className="flex items-center h-10">
+            <div
+              className="flex items-center cursor-pointer"
+              onClick={() =>
+                onUpdateSettings({ ...settings, newTab: !settings.newTab })
+              }
+            >
+              <label htmlFor="dark mode" className="mr-4 cursor-pointer">
+                Open link in a new tab
+              </label>
+              <input
+                type="checkbox"
+                className="cursor-pointer"
+                checked={settings.newTab}
                 onChange={() => {}}
               />
             </div>

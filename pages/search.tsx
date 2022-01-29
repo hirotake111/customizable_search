@@ -5,7 +5,6 @@ import {
   PhotographIcon,
   PlayIcon,
   SearchIcon,
-  ViewGridIcon,
 } from "@heroicons/react/solid";
 import { CogIcon } from "@heroicons/react/outline";
 
@@ -20,9 +19,9 @@ import Footer from "../components/Footer";
 import { getSearchResults } from "../utils/api";
 import SearchInfo from "../components/SearchInfo";
 import SearchedItem from "../components/SearchedItem";
-import { useDarkMode } from "../hooks/darkmode";
 import SettingModal from "../components/SettingModal";
 import { useModal } from "../hooks/modal";
+import { useSettings } from "../hooks/settings";
 
 const Search: NextPage = () => {
   const router = useRouter();
@@ -33,8 +32,8 @@ const Search: NextPage = () => {
       return getSearchResults(query.q);
     }
   });
-  const { darkMode, setDarkMode } = useDarkMode();
   const { modalEnabled, modalRef, enableModal } = useModal();
+  const { settings, updateSettings } = useSettings();
 
   useEffect(() => {
     if (input.current && typeof query.q === "string") {
@@ -55,13 +54,15 @@ const Search: NextPage = () => {
   return (
     <div
       aria-label="background color"
-      className={["transition", darkMode ? "bg-slate-800" : ""].join(" ")}
+      className={["transition", settings.darkMode ? "bg-slate-800" : ""].join(
+        " "
+      )}
     >
       <SettingModal
         modalEnabled={modalEnabled}
         refProp={modalRef}
-        darkMode={darkMode}
-        onClick={() => setDarkMode(!darkMode)}
+        settings={settings}
+        onUpdateSettings={updateSettings}
       />
       <div className="flex flex-col">
         <header className="flex justify-between flex-col sm:flex-row items-center pt-7 px-6 pb-2">
@@ -79,7 +80,7 @@ const Search: NextPage = () => {
               <SearchForm
                 inputRef={input}
                 onSubmit={handleSubmit}
-                darkMode={darkMode}
+                darkMode={settings.darkMode}
               />
             </div>
           </div>
@@ -164,7 +165,12 @@ const Search: NextPage = () => {
                 </div>
                 <div aria-label="search results" className="flex flex-col">
                   {data.items.map((item, i) => (
-                    <SearchedItem key={i} {...item} darkMode={darkMode} />
+                    <SearchedItem
+                      key={i}
+                      {...item}
+                      darkMode={settings.darkMode}
+                      openWidthNewTab={settings.newTab}
+                    />
                   ))}
                 </div>
               </div>
@@ -173,7 +179,7 @@ const Search: NextPage = () => {
             )}
           </div>
         </main>
-        <Footer darkMode={darkMode} />
+        <Footer darkMode={settings.darkMode} />
       </div>
     </div>
   );

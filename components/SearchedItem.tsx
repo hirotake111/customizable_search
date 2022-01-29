@@ -5,6 +5,7 @@ interface Props {
   link: string;
   snippet: string;
   darkMode?: boolean;
+  openWidthNewTab: boolean;
 }
 
 export default function SearchedItem({
@@ -12,13 +13,14 @@ export default function SearchedItem({
   link,
   snippet,
   darkMode,
+  openWidthNewTab,
 }: Props) {
   return (
     <div className="flex flex-col mb-5">
       <div aria-label="url" className="mb-1">
         <span className="text-sm text-gray-800">
           <Link href={link} passHref>
-            <a target="_blank">{link}</a>
+            <a target={openWidthNewTab ? "_blank" : "_self"}>{link}</a>
           </Link>
         </span>
       </div>
@@ -27,7 +29,7 @@ export default function SearchedItem({
           className={`text-xl ${darkMode ? "text-blue-400" : "text-blue-800"}`}
         >
           <Link href={link} passHref>
-            <a target="_blank">{title}</a>
+            <a target={openWidthNewTab ? "_blank" : "_self"}>{title}</a>
           </Link>
         </span>
       </div>
