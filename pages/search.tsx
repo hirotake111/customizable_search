@@ -136,8 +136,8 @@ const Search: NextPage = () => {
                 <SearchInfo {...data?.searchInformation} />
               </div>
               <div aria-label="search results" className="flex flex-col">
-                {data.items.map((item) => (
-                  <SearchedItem {...item} />
+                {data.items.map((item, i) => (
+                  <SearchedItem key={i} {...item} />
                 ))}
               </div>
             </div>
