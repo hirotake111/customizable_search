@@ -4,8 +4,9 @@ import { FormEventHandler, RefObject } from "react";
 interface Props {
   inputRef: RefObject<HTMLInputElement>;
   onSubmit: FormEventHandler<HTMLFormElement>;
+  darkMode?: boolean;
 }
-export default function SearchForm({ inputRef, onSubmit }: Props) {
+export default function SearchForm({ inputRef, onSubmit, darkMode }: Props) {
   return (
     <form
       className="flex items-center justify-between h-11 border-solid border border-gray-300 rounded-full  px-5 hover:shadow-md transition focus-within:shadow-md"
@@ -13,7 +14,9 @@ export default function SearchForm({ inputRef, onSubmit }: Props) {
     >
       <SearchIcon className="fill-gray-500 w-5 hover:cursor-pointer" />
       <input
-        className="focus:outline-none w-full px-2 pb-0.5"
+        className={`focus:outline-none w-full px-2 pb-0.5 bg-transparent ${
+          darkMode && "text-white"
+        }`}
         type="text"
         ref={inputRef}
       />

@@ -21,6 +21,14 @@ body {
     @apply hover:shadow-sm hover:border-gray-300;
   }
 
+  .custom-btn_dark {
+    @apply bg-slate-700;
+    @apply text-gray-200 text-sm;
+    @apply px-3 h-10;
+    @apply border border-slate-700 rounded-md;
+    @apply hover:shadow-sm hover:border-slate-700;
+  }
+
   .custom-search-tab {
     @apply py-2 px-3 md:py-3 md:px-5;
     @apply text-gray-500 text-sm;

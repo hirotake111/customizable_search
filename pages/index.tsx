@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { FormEventHandler, useCallback, useRef, useState } from "react";
+import { FormEventHandler, useCallback, useRef } from "react";
 import Logo from "../components/Logo";
 import { useRouter } from "next/router";
 import { CogIcon } from "@heroicons/react/outline";
@@ -15,7 +15,6 @@ const Home: NextPage = () => {
   const router = useRouter();
   const input = useRef<HTMLInputElement>(null);
   const { modalEnabled, enableModal, modalRef } = useModal();
-  // const [darkMode, setDarkMode] = useState(false);
   const { darkMode, setDarkMode } = useDarkMode();
 
   const pushSearchString = useCallback(() => {
@@ -37,7 +36,7 @@ const Home: NextPage = () => {
   return (
     <div
       aria-label="background color"
-      className={["transition", darkMode ? "bg-slate-700" : ""].join(" ")}
+      className={["transition", darkMode ? "bg-slate-800" : ""].join(" ")}
     >
       <div className="flex flex-col h-screen justify-between">
         {/** modal */}
@@ -87,13 +86,24 @@ const Home: NextPage = () => {
             <Logo />
           </div>
           <div className="m-5 w-full max-w-[90%] sm:max-w-[584px]">
-            <SearchForm inputRef={input} onSubmit={handleSubmit} />
+            <SearchForm
+              inputRef={input}
+              onSubmit={handleSubmit}
+              darkMode={darkMode}
+            />
             <div className="mt-7">
               <div className="flex justify-center">
-                <button className="custom-btn mr-5" onClick={pushSearchString}>
+                <button
+                  className={`custom-btn mr-5 ${darkMode && "custom-btn_dark"}`}
+                  onClick={pushSearchString}
+                >
                   GoGoLetsSearch
                 </button>
-                <button className="custom-btn">I&apos;m Feeling Lucky</button>
+                <button
+                  className={`custom-btn ${darkMode && "custom-btn_dark"}`}
+                >
+                  I&apos;m Feeling Lucky
+                </button>
               </div>
             </div>
           </div>
@@ -106,7 +116,7 @@ const Home: NextPage = () => {
             </Link>
           </div>
         </main>
-        <Footer />
+        <Footer darkMode={darkMode} />
       </div>{" "}
     </div>
   );
