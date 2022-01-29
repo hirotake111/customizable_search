@@ -13,7 +13,7 @@ import { useModal } from "../hooks/modal";
 const Home: NextPage = () => {
   const router = useRouter();
   const input = useRef<HTMLInputElement>(null);
-  const { modalEnabled, enableModal } = useModal();
+  const { modalEnabled, enableModal, modalRef } = useModal();
 
   const pushSearchString = useCallback(() => {
     if (input.current?.value && input.current.value.length >= 1) {
@@ -34,8 +34,12 @@ const Home: NextPage = () => {
         className="absolute z-10 transition-all"
         style={{ visibility: modalEnabled ? "visible" : "hidden" }}
       >
-        <div className="flex justify-center items-center w-screen h-screen bg-slate-400 bg-opacity-50">
+        <div
+          aria-label="modal backbround"
+          className="flex justify-center items-center w-screen h-screen bg-slate-400 bg-opacity-50"
+        >
           <div
+            ref={modalRef}
             aria-label="modal"
             className="flex flex-col w-3/4 h-3/4 rounded-xl bg-white p-5"
           >
