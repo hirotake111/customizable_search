@@ -54,7 +54,7 @@ export default function SettingModal({
               }
             >
               <label htmlFor="dark mode" className="mr-4 cursor-pointer">
-                Open link in a new tab
+                Open link with a new tab
               </label>
               <input
                 type="checkbox"
