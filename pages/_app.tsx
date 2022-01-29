@@ -8,8 +8,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Google Clone</title>
-        <meta name="description" content="Google clone app" />
+        <title>Search</title>
+        <meta name="description" content="Customizable Search App" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <QueryClientProvider client={client}>

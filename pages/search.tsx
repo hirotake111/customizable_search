@@ -53,7 +53,8 @@ const Search: NextPage = () => {
         >
           <Link href="/">
             <a className="flex items-center sm:mr-10 mb-3 sm:mb-0">
-              <Logo width={92} height={30} />
+              {/* <Logo width={92} height={30} /> */}
+              <Logo width={48} height={48} />
             </a>
           </Link>
           <div className="w-full max-w-[90%] sm:max-w-[584px]">

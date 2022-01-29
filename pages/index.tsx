@@ -38,14 +38,14 @@ const Home: NextPage = () => {
           <div className="mt-7">
             <div className="flex justify-center">
               <button className="custom-btn mr-5" onClick={pushSearchString}>
-                Google Search
+                GoGoLetsSearch
               </button>
               <button className="custom-btn">I&apos;m Feeling Lucky</button>
             </div>
           </div>
         </div>
         <div className="text-xs text-gray-600">
-          Google offered in:{" "}
+          Offered in:{" "}
           <Link href="/" passHref>
             <a>
               <span className="text-blue-700 hover:underline">日本語</span>

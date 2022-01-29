@@ -1,4 +1,6 @@
-# Customizable Google Search
+# Customizable Search App (Google-ish)
+
+Customizable seach app that uses Google custom search API on its backend.
 
 [Custom Search JSON API: Introduction](https://developers.google.com/custom-search/v1/introduction)
 

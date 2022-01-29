@@ -7,7 +7,7 @@ export default function Header() {
       <div className="flex items-center mx-4">
         <div className="mr-4">
           <a href="#" className="hover:underline">
-            Gmail
+            Mail
           </a>
         </div>
         <div>
